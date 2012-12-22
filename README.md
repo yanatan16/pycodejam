@@ -17,11 +17,11 @@ pip install pycodejam
 
 Or you can install from source:
 
-'''
+```
 git clone https://github.com/yanatan16/pycodejam
 cd pycodejam
 python setup.py test && python setup.py install
-'''
+```
 
 Note that pycodejam is a python 3.2-compatible library and is incompatible with python 2.x. You can use a virtualenv if you have python3 on your system:
 ```
