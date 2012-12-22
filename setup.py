@@ -1,4 +1,8 @@
 from setuptools import setup, find_packages
+import sys
+
+assert sys.version_info >= (3,), 'pycodejam is a python 3 compatible library.'
+
 setup(
     name = "CodeJam",
     version = "0.1",
