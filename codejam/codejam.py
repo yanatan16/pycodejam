@@ -31,9 +31,7 @@ class CodeJam:
     self.parse = parser
     self.solve = solver
 
-  def run(self, infile, outfile, debug=False, silent=False):
-    inf = open(infile, 'r')
-    outf = open(outfile, 'w')
+  def run(self, inf, outf, debug=False, silent=False):
     debug = debug and (not silent)
 
     for i, case in enumerate(self.parse(inf)):
@@ -41,23 +39,28 @@ class CodeJam:
         print("Case #%d Input: %s" % (i+1, str(case)))
 
       ans = self.solve(*case)
-      output = "Case #%d: %s" % (i+1, str(ans))
+
+      if type(ans) == float:
+        oans = '%.6f' % ans
+      else:
+        oans = str(ans)
+      output = "Case #%d: %s" % (i+1, oans)
 
       if not silent:
         print(output)
 
       print(output, file=outf)
 
-  def run_multiproc(self, infile, outfile, debug=False, silent=False, workers=4):
+  def run_multiproc(self, inf, outf, debug=False, silent=False, workers=4):
     from multiprocessing import Pool
 
-    inf = open(infile, 'r')
-    outf = open(outfile, 'w')
     debug = debug and (not silent)
 
     args = list(self.parse(inf))
     if not silent:
       print("Offloading work to %d subprocesses" % workers)
+    if debug:
+        print("Inputs: %s" % str(args))
 
     results = parmap(self.solve, args, workers=workers)
 
@@ -72,7 +75,7 @@ class CodeJam:
 
       print(output, file=outf)
 
-  def main(self):
+  def main(self, argv=sys.argv[1:]):
     parser = argparse.ArgumentParser(description='Run a %s.' % self.name)
     parser.add_argument('input', metavar='FILE', type=str, 
       help='input file (A-small-practice.in for example)')
@@ -87,12 +90,15 @@ class CodeJam:
     parser.add_argument('-w','--workers',type=int, action='store', default=4,
       help='Number of workers to use if multiprocessing', metavar='N')
 
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     
     if not args.output:
       args.output = ''.join(args.input.split('.')[:-1]) + '.out'
 
+    inf = open(args.input, 'r')
+    outf = open(args.output, 'w')
+
     if args.multiproc:
-      self.run_multiproc(args.input, args.output, debug=args.debug, silent=args.quiet, workers=args.workers)
+      self.run_multiproc(inf, outf, debug=args.debug, silent=args.quiet, workers=args.workers)
     else:
-      self.run(args.input, args.output, debug=args.debug, silent=args.quiet)
+      self.run(inf, outf, debug=args.debug, silent=args.quiet)

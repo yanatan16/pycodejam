@@ -2,7 +2,8 @@ from setuptools import setup, find_packages
 setup(
     name = "CodeJam",
     version = "0.1",
-    packages = find_packages(),
+    packages = find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
+    test_suite = 'codejam.tests',
 
     # metadata for upload to PyPI
     author = "Jon Eisen",

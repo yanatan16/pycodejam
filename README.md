@@ -1,7 +1,25 @@
 pycodejam
 =========
 
-A Code Jam problem runner for python.
+A [Google Code Jam](http://code.google.com/codejam) problem runner for python.
+
+_Can I used this in the contests?_ Yes, as long as this library is open source (it is) and is openly available online (it is), it can be used without submission on each problem. Just make a comment in your code to that effect. See the [Code Jam FAQ](http://code.google.com/codejam/faq.html#tools)
+
+## License
+
+pycodejam is licensed with the MIT license found in the LICENSE file.
+
+## Installation
+
+Note that pycodejam is a python 3.2-compatible library and is incompatible with python 2.x.
+
+```
+git clone https://github.com/yanatan16/pycodejam
+cd pycodejam
+python setup.py test && python setup.py install
+```
+
+_TODO_: upload to pypi
 
 ## Examples
 
@@ -22,16 +40,17 @@ A complex example
 def solve(a, b, c):
   return my_solution
 
-def parse(file):
-  for line in file:
-    yield [int(x) for x in line.split()]
+@custom_iter_parser
+def parse(nxtline):
+  n = int(nxtline())
+  return [nxtline() for unused in range(n)]
 
 if __name__ == "__main__":
   from codejam import CodeJam
   CodeJam(parse, solve).main()
 ```
 
-The `-h` option:
+The command line `-h` option:
 
 ```
 usage: problem_solver.py [-h] [-o FILE] [-d] [-q] [-m] [-w N] FILE
@@ -58,14 +77,18 @@ optional arguments:
 `CodeJam` is a class that provides ways to easily run a code jam problem.
 
 The class requires two parameters to instantiate:
-- parser - A generator function of one parameter (file_obj) that yields each case in a tuple
-  There are predominant parsers and helpful decorators in the parsers module
-- solver - A solver that takes the case tuple expanded and returns a str()-able object to print as the answer
+- parser - A generator function of one parameter (file_obj) that yields each case in a tuple.
+  There are useful parsers and helpful decorators in the `parsers` module
+- solver - A solver that takes the parsed case list/tuple expanded and returns a `str()`-able object to print as the answer
 
 The usual way to use this class is to call the main() function which will interpret command line arguments
 for the input file and options for debugging (-d).
 
+### Multiprocessing
+
 Multiprocessing is an easy way to parallelize the solving (assuming each solution is independent!). Simply pass the -m option to the command line when executing the script and multiprocessing will take care of the rest. Make sure to debug your solvers first though! Because debugging while multiprocessing is difficult.
+
+_Note_: You must define functions at the top level of a module in order to be able to pickle them to multiprocessing workers. When in doubt, don't use multiprocessing.
 
 ### parsers
 
@@ -91,6 +114,15 @@ def my_custom_parser(file):
   for i in range(n):
     m = int(next().strip()) # Number of lines for this case
     yield [next() for unused in range(m)]
+```
+
+And thats why I created the `custom_iter_parser` which will take care of the first four lines of the above pattern and simply call your parser on each iteration of the loop:
+
+```python
+@custom_iter_parser
+def parse(next):
+  m = int(next().strip()) # Number of lines for this case
+  return [next() for unused in range(m)] # Return here, don't yield
 ```
 
 ### helpers
