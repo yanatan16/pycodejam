@@ -138,6 +138,19 @@ class TestCodeJam(unittest.TestCase):
     expout = '\n'.join(['Case #%d: 1'%i for i in [1,2]]) + '\n'
     assert outf.getvalue() == expout, "unexpected output: '%s' vs '%s'" % (outf.getvalue(), expout)
 
+  def test_floating_accuracy(self):
+    def solve(line1, line2):
+      return 3.128
+
+    inf = StringIO(self.input2)
+    outf = StringIO()
+    CodeJam(parsers.floats, solve, floating_accuracy=2).run(inf, outf, silent=True)
+
+    expout = '\n'.join(['Case #%d: 3.13'%i for i in [1,2]]) + '\n'
+    assert outf.getvalue() == expout, "unexpected output: '%s' vs '%s'" % (outf.getvalue(), expout)
+
+
+
 class TestCodeJamMain(unittest.TestCase):
   def solve(self, *lines):
     assert lines == [[1,2,3]]

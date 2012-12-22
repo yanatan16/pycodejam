@@ -26,10 +26,18 @@ class CodeJam:
   for the input file and options for debugging (-d)
   '''
 
-  def __init__(self, parser, solver, name="Generic CodeJam Problem"):
+  def __init__(self, parser, solver, name="Generic CodeJam Problem", floating_accuracy=6):
     self.name = name
     self.parse = parser
     self.solve = solver
+    self.facc = floating_accuracy
+
+  def outans(self, ans):
+    '''Output an answer'''
+    if type(ans) == float:
+      return ('%%.%df' % self.facc) % ans
+    else:
+      return str(ans)
 
   def run(self, inf, outf, debug=False, silent=False):
     debug = debug and (not silent)
@@ -39,12 +47,7 @@ class CodeJam:
         print("Case #%d Input: %s" % (i+1, str(case)))
 
       ans = self.solve(*case)
-
-      if type(ans) == float:
-        oans = '%.6f' % ans
-      else:
-        oans = str(ans)
-      output = "Case #%d: %s" % (i+1, oans)
+      output = "Case #%d: %s" % (i+1, self.outans(ans))
 
       if not silent:
         print(output)
@@ -68,7 +71,7 @@ class CodeJam:
       if debug:
         print("Case #%d Input: %s" % (i+1, str(case)))
 
-      output = "Case #%d: %s" % (i+1, str(ans))
+      output = "Case #%d: %s" % (i+1, self.outans(ans))
 
       if not silent:
         print(output)
