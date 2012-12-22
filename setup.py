@@ -4,7 +4,7 @@ import sys
 assert sys.version_info >= (3,), 'pycodejam is a python 3 compatible library.'
 
 setup(
-    name = "CodeJam",
+    name = "pycodejam",
     version = "0.1",
     packages = find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     test_suite = 'codejam.tests',

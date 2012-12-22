@@ -11,15 +11,27 @@ pycodejam is licensed with the MIT license found in the LICENSE file.
 
 ## Installation
 
-Note that pycodejam is a python 3.2-compatible library and is incompatible with python 2.x.
-
 ```
+pip install pycodejam
+```
+
+Or you can install from source:
+
+'''
 git clone https://github.com/yanatan16/pycodejam
 cd pycodejam
 python setup.py test && python setup.py install
-```
+'''
 
-_TODO_: upload to pypi
+Note that pycodejam is a python 3.2-compatible library and is incompatible with python 2.x. You can use a virtualenv if you have python3 on your system:
+```
+virtualenv -p python3.2 venv
+source venv/bin/activate
+pip install pycodejam
+
+# Later, you can call
+deactivate # to go back to regular system-wide python
+```
 
 ## Examples
 
