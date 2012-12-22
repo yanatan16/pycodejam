@@ -39,7 +39,7 @@ A simple example
 
 ```python
 def solve(line1, line2):
-  return my_solution
+  return sum(line1) - sum(line2) # This is where you put your solution
 
 if __name__ == "__main__":
   from codejam import CodeJam, parsers
@@ -49,8 +49,8 @@ if __name__ == "__main__":
 A complex example
 
 ```python
-def solve(a, b, c):
-  return my_solution
+def solve(*lines):
+  return sum((sum(line) for line in lines)) # This is where you put your solution
 
 @custom_iter_parser
 def parse(nxtline):
@@ -90,7 +90,7 @@ optional arguments:
 
 The class requires two parameters to instantiate:
 - parser - A generator function of one parameter (file_obj) that yields each case in a tuple.
-  There are useful parsers and helpful decorators in the `parsers` module
+  There are useful parsers and helpful decorators in the `codejam.parsers` module
 - solver - A solver that takes the parsed case list/tuple expanded and returns a `str()`-able object to print as the answer
 
 The usual way to use this class is to call the main() function which will interpret command line arguments
