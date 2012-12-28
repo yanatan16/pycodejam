@@ -6,6 +6,23 @@ Dec 2012
 '''
 from functools import wraps
 
+def iter_parser(fn):
+  '''A decorator that will pass a function to return the next line of input. 
+  The decorated function will be called for each case and should return (not yield) the case tuple'''
+  @wraps(fn)
+  def iter_parser_wrap(file):
+    lines = file.__iter__()
+    next = lambda: lines.__next__().strip()
+
+    n = int(next()) # Number of cases
+    for i in range(n):
+      try:
+        nxt = fn(next)
+        yield nxt
+      except StopIteration:
+        raise Exception("File stopped before expected!")
+  return iter_parser_wrap
+
 def simple_parser(parse):
   '''
   Simple parsers have a constant number of lines per case.
@@ -57,17 +74,4 @@ def floats(x):
 def lines(*lines):
   '''Simple parser that returns each line as an array'''
   return lines
-
-def custom_iter_parser(fn):
-  '''A decorator that will pass a function to return the next line of input. 
-  The decorated function will be called for each case and should return (not yield) the case tuple'''
-  @wraps(fn)
-  def custom_iter_parser_wrap(file):
-    lines = file.__iter__()
-    next = lambda: lines.__next__().strip()
-
-    n = int(next()) # Number of cases
-    for i in range(n):
-      yield fn(next)
-  return custom_iter_parser_wrap
 

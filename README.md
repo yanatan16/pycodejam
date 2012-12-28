@@ -52,7 +52,7 @@ A complex example
 def solve(*lines):
   return sum((sum(line) for line in lines)) # This is where you put your solution
 
-@custom_iter_parser
+@iter_parser
 def parse(nxtline):
   n = int(nxtline())
   return [nxtline() for unused in range(n)]
@@ -132,10 +132,10 @@ def my_custom_parser(file):
     yield [next() for unused in range(m)]
 ```
 
-And thats why I created the `custom_iter_parser` which will take care of the first four lines of the above pattern and simply call your parser on each iteration of the loop:
+And thats why I created the `iter_parser` which will take care of the first four lines of the above pattern and simply call your parser on each iteration of the loop:
 
 ```python
-@custom_iter_parser
+@iter_parser
 def parse(next):
   m = int(next().strip()) # Number of lines for this case
   return [next() for unused in range(m)] # Return here, don't yield

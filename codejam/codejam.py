@@ -24,13 +24,18 @@ class CodeJam:
 
   The usual way to use this class is to call the main() function which will interpret command line arguments
   for the input file and options for debugging (-d)
+
+  name - Something to add to the help statement
+  floating_accuracy - digits of precision for floating point numbers
+  include_case - Include the "Case #%%d: " %% case_num for each case
   '''
 
-  def __init__(self, parser, solver, name="Generic CodeJam Problem", floating_accuracy=6):
+  def __init__(self, parser, solver, name="Generic CodeJam Problem", floating_accuracy=6, include_case=True):
     self.name = name
     self.parse = parser
     self.solve = solver
     self.facc = floating_accuracy
+    self.include_case = include_case
 
   def outans(self, ans):
     '''Output an answer'''
@@ -38,6 +43,13 @@ class CodeJam:
       return ('%%.%df' % self.facc) % ans
     else:
       return str(ans)
+
+  def output(self, i, ans):
+    oans = self.outans(ans)
+    if self.include_case:
+      return "Case #%d: %s" % (i, oans)
+    else:
+      return oans
 
   def run(self, inf, outf, debug=False, silent=False):
     debug = debug and (not silent)
@@ -47,7 +59,7 @@ class CodeJam:
         print("Case #%d Input: %s" % (i+1, str(case)))
 
       ans = self.solve(*case)
-      output = "Case #%d: %s" % (i+1, self.outans(ans))
+      output = self.output(i+1, ans)
 
       if not silent:
         print(output)
@@ -71,7 +83,7 @@ class CodeJam:
       if debug:
         print("Case #%d Input: %s" % (i+1, str(case)))
 
-      output = "Case #%d: %s" % (i+1, self.outans(ans))
+      output = self.output(i+1, ans)
 
       if not silent:
         print(output)

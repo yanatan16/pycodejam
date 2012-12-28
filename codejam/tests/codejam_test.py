@@ -1,10 +1,11 @@
 
 import sys
-sys.path = ['../'] + sys.path # Prepend
+sys.path = ['../../'] + sys.path # Prepend
 
 from codejam import CodeJam, parsers, memoize
 from io import StringIO
 import unittest
+from itertools import repeat
 
 def pickleable_solve(line):
   assert line == "1 2 3", 'Input to solve() not as expected: "%s"' % line
@@ -111,12 +112,12 @@ class TestCodeJam(unittest.TestCase):
     expout = '\n'.join(['Case #%d: FIVE'%i for i in [1,2,3]]) + '\n'
     assert outf.getvalue() == expout, "unexpected output: '%s' vs '%s'" % (outf.getvalue(), expout)
 
-  def test_custom_iter_parser(self):
+  def test_iter_parser(self):
     def solve(n, l):
       assert len(l) == n
       return 6.1
 
-    @parsers.custom_iter_parser
+    @parsers.iter_parser
     def parse(nxt):
       n = int(nxt())
       l = [int(nxt()) for unused in range(n)]
@@ -128,6 +129,26 @@ class TestCodeJam(unittest.TestCase):
 
     expout = '\n'.join(['Case #%d: 6.100000'%i for i in [1,2]]) + '\n'
     assert outf.getvalue() == expout, "unexpected output: '%s' vs '%s'" % (outf.getvalue(), expout)
+
+  def test_bad_iter_parser(self):
+    def solve(n, l):
+      assert len(l) == n
+      return 6.1
+
+    @parsers.iter_parser
+    def parse(nxt):
+      n = int(nxt())
+      nxt()
+      l = [int(nxt()) for unused in range(n)]
+      return (n, l)
+
+    inf = StringIO(self.irregular_input)
+    outf = StringIO()
+    try:
+      CodeJam(parse, solve).run(inf, outf, silent=True)
+      assert False, "Should have errored on parse!"
+    except:
+      pass
 
   def test_multiproc(self):
 
@@ -149,6 +170,16 @@ class TestCodeJam(unittest.TestCase):
     expout = '\n'.join(['Case #%d: 3.13'%i for i in [1,2]]) + '\n'
     assert outf.getvalue() == expout, "unexpected output: '%s' vs '%s'" % (outf.getvalue(), expout)
 
+  def test_include_case(self):
+    def solve(line1, line2):
+      return 3
+
+    inf = StringIO(self.input2)
+    outf = StringIO()
+    CodeJam(parsers.floats, solve, include_case=False).run(inf, outf, silent=True)
+
+    expout = '\n'.join(repeat('3',2)) + '\n'
+    assert outf.getvalue() == expout, "unexpected output: '%s' vs '%s'" % (outf.getvalue(), expout)
 
 
 class TestCodeJamMain(unittest.TestCase):
