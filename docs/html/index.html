@@ -10,8 +10,8 @@
     
     <title>Welcome to pycodejam’s documentation! &mdash; PyCodeJam 1.0.0 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -22,9 +22,9 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="top" title="PyCodeJam 1.0.0 documentation" href="#" /> 
   </head>
   <body>
@@ -130,7 +130,7 @@ optional arguments:
 Dec 2012</p>
 <dl class="class">
 <dt id="codejam.codejam.CodeJam">
-<em class="property">class </em><tt class="descclassname">codejam.codejam.</tt><tt class="descname">CodeJam</tt><big>(</big><em>parser</em>, <em>solver</em>, <em>name='Generic CodeJam Problem'</em>, <em>floating_accuracy=6</em>, <em>include_case=True</em><big>)</big><a class="reference internal" href="_modules/codejam/codejam.html#CodeJam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.codejam.CodeJam" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">codejam.codejam.</tt><tt class="descname">CodeJam</tt><big>(</big><em>parser</em>, <em>solver</em>, <em>name='Generic CodeJam Problem'</em>, <em>floating_accuracy=6</em>, <em>include_case=True</em><big>)</big><a class="reference internal" href="modules/codejam/codejam.html#CodeJam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.codejam.CodeJam" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class that provides ways to easily run a code jam problem</p>
 <p>The class requires two parameters to instantiate:
 parser - A generator function of one parameter (file_obj) that yields each case in a tuple. There are predominant parsers and helpful decorators in the parsers module
@@ -142,19 +142,19 @@ floating_accuracy - digits of precision for floating point numbers
 include_case - Include the &#8220;Case #n: &#8221; for each case</p>
 <dl class="method">
 <dt id="codejam.codejam.CodeJam.main">
-<tt class="descname">main</tt><big>(</big><em>argv=None</em><big>)</big><a class="reference internal" href="_modules/codejam/codejam.html#CodeJam.main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.codejam.CodeJam.main" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">main</tt><big>(</big><em>argv=None</em><big>)</big><a class="reference internal" href="modules/codejam/codejam.html#CodeJam.main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.codejam.CodeJam.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the CodeJam runner utility from the command line</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="codejam.codejam.CodeJam.run">
-<tt class="descname">run</tt><big>(</big><em>inf</em>, <em>outf</em>, <em>debug=False</em>, <em>silent=False</em><big>)</big><a class="reference internal" href="_modules/codejam/codejam.html#CodeJam.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.codejam.CodeJam.run" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">run</tt><big>(</big><em>inf</em>, <em>outf</em>, <em>debug=False</em>, <em>silent=False</em><big>)</big><a class="reference internal" href="modules/codejam/codejam.html#CodeJam.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.codejam.CodeJam.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the CodeJam runner with file objects inf and outf and options for debug and silent</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="codejam.codejam.CodeJam.run_multiproc">
-<tt class="descname">run_multiproc</tt><big>(</big><em>inf</em>, <em>outf</em>, <em>debug=False</em>, <em>silent=False</em>, <em>workers=4</em><big>)</big><a class="reference internal" href="_modules/codejam/codejam.html#CodeJam.run_multiproc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.codejam.CodeJam.run_multiproc" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">run_multiproc</tt><big>(</big><em>inf</em>, <em>outf</em>, <em>debug=False</em>, <em>silent=False</em>, <em>workers=4</em><big>)</big><a class="reference internal" href="modules/codejam/codejam.html#CodeJam.run_multiproc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.codejam.CodeJam.run_multiproc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the CodeJam runner utility as multiprocessing with a default of 4 workers</p>
 </dd></dl>
 
@@ -168,32 +168,32 @@ include_case - Include the &#8220;Case #n: &#8221; for each case</p>
 Dec 2012</p>
 <dl class="function">
 <dt id="codejam.parsers.floats">
-<tt class="descclassname">codejam.parsers.</tt><tt class="descname">floats</tt><big>(</big><em>f</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#floats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.floats" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">floats</tt><big>(</big><em>f</em><big>)</big><a class="reference internal" href="modules/codejam/parsers.html#floats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.floats" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simple parser that returns all floats as an array of arrays</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="codejam.parsers.ints">
-<tt class="descclassname">codejam.parsers.</tt><tt class="descname">ints</tt><big>(</big><em>f</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#ints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.ints" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">ints</tt><big>(</big><em>f</em><big>)</big><a class="reference internal" href="modules/codejam/parsers.html#ints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.ints" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simple parser that returns all integers as an array of arrays</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="codejam.parsers.iter_parser">
-<tt class="descclassname">codejam.parsers.</tt><tt class="descname">iter_parser</tt><big>(</big><em>fn</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#iter_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.iter_parser" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">iter_parser</tt><big>(</big><em>fn</em><big>)</big><a class="reference internal" href="modules/codejam/parsers.html#iter_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.iter_parser" title="Permalink to this definition">¶</a></dt>
 <dd><p>A decorator that will pass a function to return the next line of input. 
 The decorated function will be called for each case and should return (not yield) the case tuple</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="codejam.parsers.lines">
-<tt class="descclassname">codejam.parsers.</tt><tt class="descname">lines</tt><big>(</big><em>f</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.lines" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">lines</tt><big>(</big><em>f</em><big>)</big><a class="reference internal" href="modules/codejam/parsers.html#lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.lines" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simple parser that returns each line as an array</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="codejam.parsers.simple_parser">
-<tt class="descclassname">codejam.parsers.</tt><tt class="descname">simple_parser</tt><big>(</big><em>parse</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#simple_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.simple_parser" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">simple_parser</tt><big>(</big><em>parse</em><big>)</big><a class="reference internal" href="modules/codejam/parsers.html#simple_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.simple_parser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simple parsers have a constant number of lines per case.
 This decorator implies that number and calls the decorated function
 with an expanded list of lines</p>
@@ -201,13 +201,13 @@ with an expanded list of lines</p>
 
 <dl class="function">
 <dt id="codejam.parsers.split_cast_parser">
-<tt class="descclassname">codejam.parsers.</tt><tt class="descname">split_cast_parser</tt><big>(</big><em>cast</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#split_cast_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.split_cast_parser" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">split_cast_parser</tt><big>(</big><em>cast</em><big>)</big><a class="reference internal" href="modules/codejam/parsers.html#split_cast_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.split_cast_parser" title="Permalink to this definition">¶</a></dt>
 <dd><p>A split_cast_parser is a simple_parser that splits each line into words then casts them</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="codejam.parsers.words">
-<tt class="descclassname">codejam.parsers.</tt><tt class="descname">words</tt><big>(</big><em>f</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.words" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">words</tt><big>(</big><em>f</em><big>)</big><a class="reference internal" href="modules/codejam/parsers.html#words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.words" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simple parser that returns all words as an array of arrays</p>
 </dd></dl>
 
@@ -219,7 +219,7 @@ with an expanded list of lines</p>
 Dec 2012</p>
 <dl class="function">
 <dt id="codejam.helpers.memoize">
-<tt class="descclassname">codejam.helpers.</tt><tt class="descname">memoize</tt><big>(</big><em>fn</em><big>)</big><a class="reference internal" href="_modules/codejam/helpers.html#memoize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.helpers.memoize" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">codejam.helpers.</tt><tt class="descname">memoize</tt><big>(</big><em>fn</em><big>)</big><a class="reference internal" href="modules/codejam/helpers.html#memoize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.helpers.memoize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Memoize a function</p>
 </dd></dl>
 
@@ -253,7 +253,7 @@ Dec 2012</p>
 
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/index.txt"
+    <li><a href="sources/index.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
