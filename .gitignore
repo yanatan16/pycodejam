@@ -38,3 +38,6 @@ nosetests.xml
 *.out
 
 .*.un~
+
+__pycache__
+venv

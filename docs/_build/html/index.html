@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to pycodejam’s documentation! &mdash; PyCodeJam 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="PyCodeJam 1.0.0 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">PyCodeJam 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-pycodejam-s-documentation">
+<h1>Welcome to pycodejam&#8217;s documentation!<a class="headerlink" href="#welcome-to-pycodejam-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<div class="section" id="module-codejam">
+<span id="introduction"></span><h2>Introduction<a class="headerlink" href="#module-codejam" title="Permalink to this headline">¶</a></h2>
+<p>This is PyCodeJam, a CodeJam runner in python!</p>
+<p>Essentially, this package will save you time vital to CodeJam problems.</p>
+<p><em>Can I used this in the contests?</em> Yes, as long as this library is open source (it is) and is openly available online (it is), it can be used without submission on each problem. Just make a comment in your code to that effect. See the Code Jam <a class="reference external" href="http://code.google.com/codejam/faq.html#tools">FAQ</a></p>
+<p>License: pycodejam is licensed with the MIT license found in the LICENSE file.</p>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>pip install pycodejam</pre>
+</div>
+<p>Or you can install from source:</p>
+<div class="highlight-python"><pre>git clone https://github.com/yanatan16/pycodejam
+cd pycodejam
+python setup.py test &amp;&amp; python setup.py install</pre>
+</div>
+<p>Note that pycodejam is a python 3.2-compatible library and is incompatible with python 2.x. You can use a virtualenv if you have python3 on your system:</p>
+<div class="highlight-python"><pre>virtualenv -p python3.2 venv
+source venv/bin/activate
+pip install pycodejam
+
+# Later, you can call
+deactivate # to go back to regular system-wide python</pre>
+</div>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>A simple example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">):</span>
+  <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">line1</span><span class="p">)</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">line2</span><span class="p">)</span> <span class="c"># This is where you put your solution</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+  <span class="kn">from</span> <span class="nn">codejam</span> <span class="kn">import</span> <span class="n">CodeJam</span><span class="p">,</span> <span class="n">parsers</span>
+  <span class="n">CodeJam</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">ints</span><span class="p">,</span> <span class="n">solve</span><span class="p">)</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A complex example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="o">*</span><span class="n">lines</span><span class="p">):</span>
+  <span class="k">return</span> <span class="nb">sum</span><span class="p">((</span><span class="nb">sum</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">))</span> <span class="c"># This is where you put your solution</span>
+
+<span class="nd">@iter_parser</span>
+
+<span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">nxtline</span><span class="p">):</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nxtline</span><span class="p">())</span>
+  <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">nxtline</span><span class="p">())</span> <span class="k">for</span> <span class="n">unused</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+  <span class="kn">from</span> <span class="nn">codejam</span> <span class="kn">import</span> <span class="n">CodeJam</span>
+  <span class="n">CodeJam</span><span class="p">(</span><span class="n">parse</span><span class="p">,</span> <span class="n">solve</span><span class="p">)</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The command line <cite>-h</cite> option:</p>
+<div class="highlight-python"><pre>usage: problem_solver.py [-h] [-o FILE] [-d] [-q] [-m] [-w N] FILE
+
+Run a Generic CodeJam Problem.
+
+positional arguments:
+  FILE                  input file (A-small-practice.in for example)
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -o FILE, --output FILE
+                        output file (defaults to input_file.out)
+  -d, --debug           Add some debug output
+  -q, --quiet           Quiet all output to stdout
+  -m, --multiproc       Enable multiprocessing
+  -w N, --workers N     Number of workers to use if multiprocessing</pre>
+</div>
+</div>
+</div>
+<div class="section" id="in-depth-api">
+<h2>In Depth API<a class="headerlink" href="#in-depth-api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-codejam.codejam">
+<span id="codejam-module-main-class"></span><h3><a class="reference internal" href="#module-codejam" title="codejam"><tt class="xref py py-mod docutils literal"><span class="pre">codejam</span></tt></a> Module - Main Class<a class="headerlink" href="#module-codejam.codejam" title="Permalink to this headline">¶</a></h3>
+<p>Code Jam Problem Runner Utility</p>
+<p>Author: Jon Eisen
+Dec 2012</p>
+<dl class="class">
+<dt id="codejam.codejam.CodeJam">
+<em class="property">class </em><tt class="descclassname">codejam.codejam.</tt><tt class="descname">CodeJam</tt><big>(</big><em>parser</em>, <em>solver</em>, <em>name='Generic CodeJam Problem'</em>, <em>floating_accuracy=6</em>, <em>include_case=True</em><big>)</big><a class="reference internal" href="_modules/codejam/codejam.html#CodeJam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.codejam.CodeJam" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class that provides ways to easily run a code jam problem</p>
+<p>The class requires two parameters to instantiate:
+parser - A generator function of one parameter (file_obj) that yields each case in a tuple. There are predominant parsers and helpful decorators in the parsers module
+solver - A solver that takes the case tuple expanded and returns a str()-able object to print as the answer</p>
+<p>The usual way to use this class is to call the main() function which will interpret command line arguments
+for the input file and options for debugging (-d)</p>
+<p>name - Something to add to the help statement
+floating_accuracy - digits of precision for floating point numbers
+include_case - Include the &#8220;Case #n: &#8221; for each case</p>
+<dl class="method">
+<dt id="codejam.codejam.CodeJam.main">
+<tt class="descname">main</tt><big>(</big><em>argv=None</em><big>)</big><a class="reference internal" href="_modules/codejam/codejam.html#CodeJam.main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.codejam.CodeJam.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the CodeJam runner utility from the command line</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="codejam.codejam.CodeJam.run">
+<tt class="descname">run</tt><big>(</big><em>inf</em>, <em>outf</em>, <em>debug=False</em>, <em>silent=False</em><big>)</big><a class="reference internal" href="_modules/codejam/codejam.html#CodeJam.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.codejam.CodeJam.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the CodeJam runner with file objects inf and outf and options for debug and silent</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="codejam.codejam.CodeJam.run_multiproc">
+<tt class="descname">run_multiproc</tt><big>(</big><em>inf</em>, <em>outf</em>, <em>debug=False</em>, <em>silent=False</em>, <em>workers=4</em><big>)</big><a class="reference internal" href="_modules/codejam/codejam.html#CodeJam.run_multiproc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.codejam.CodeJam.run_multiproc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the CodeJam runner utility as multiprocessing with a default of 4 workers</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-codejam.parsers">
+<span id="parsers-module-input-file-parsers"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">parsers</span></tt> Module - Input File Parsers<a class="headerlink" href="#module-codejam.parsers" title="Permalink to this headline">¶</a></h3>
+<p>Code Jam Problem Parsers</p>
+<p>Author: Jon Eisen
+Dec 2012</p>
+<dl class="function">
+<dt id="codejam.parsers.floats">
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">floats</tt><big>(</big><em>f</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#floats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.floats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple parser that returns all floats as an array of arrays</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="codejam.parsers.ints">
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">ints</tt><big>(</big><em>f</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#ints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.ints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple parser that returns all integers as an array of arrays</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="codejam.parsers.iter_parser">
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">iter_parser</tt><big>(</big><em>fn</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#iter_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.iter_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>A decorator that will pass a function to return the next line of input. 
+The decorated function will be called for each case and should return (not yield) the case tuple</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="codejam.parsers.lines">
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">lines</tt><big>(</big><em>f</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#lines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.lines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple parser that returns each line as an array</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="codejam.parsers.simple_parser">
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">simple_parser</tt><big>(</big><em>parse</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#simple_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.simple_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple parsers have a constant number of lines per case.
+This decorator implies that number and calls the decorated function
+with an expanded list of lines</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="codejam.parsers.split_cast_parser">
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">split_cast_parser</tt><big>(</big><em>cast</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#split_cast_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.split_cast_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>A split_cast_parser is a simple_parser that splits each line into words then casts them</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="codejam.parsers.words">
+<tt class="descclassname">codejam.parsers.</tt><tt class="descname">words</tt><big>(</big><em>f</em><big>)</big><a class="reference internal" href="_modules/codejam/parsers.html#words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.parsers.words" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple parser that returns all words as an array of arrays</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-codejam.helpers">
+<span id="helpers-module"></span><h3><tt class="xref py py-mod docutils literal"><span class="pre">helpers</span></tt> Module<a class="headerlink" href="#module-codejam.helpers" title="Permalink to this headline">¶</a></h3>
+<p>Code Jam Problem Helpers</p>
+<p>Author: Jon Eisen
+Dec 2012</p>
+<dl class="function">
+<dt id="codejam.helpers.memoize">
+<tt class="descclassname">codejam.helpers.</tt><tt class="descname">memoize</tt><big>(</big><em>fn</em><big>)</big><a class="reference internal" href="_modules/codejam/helpers.html#memoize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#codejam.helpers.memoize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Memoize a function</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to pycodejam&#8217;s documentation!</a><ul>
+<li><a class="reference internal" href="#module-codejam">Introduction</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#in-depth-api">In Depth API</a><ul>
+<li><a class="reference internal" href="#module-codejam.codejam"><tt class="docutils literal"><span class="pre">codejam</span></tt> Module - Main Class</a></li>
+<li><a class="reference internal" href="#module-codejam.parsers"><tt class="docutils literal"><span class="pre">parsers</span></tt> Module - Input File Parsers</a></li>
+<li><a class="reference internal" href="#module-codejam.helpers"><tt class="docutils literal"><span class="pre">helpers</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">PyCodeJam 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Jon Eisen.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

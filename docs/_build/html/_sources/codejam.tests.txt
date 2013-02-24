@@ -1,0 +1,11 @@
+tests Package
+=============
+
+:mod:`codejam_test` Module
+--------------------------
+
+.. automodule:: codejam.tests.codejam_test
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

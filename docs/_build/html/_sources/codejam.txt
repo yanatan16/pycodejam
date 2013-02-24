@@ -1,0 +1,35 @@
+codejam Package
+===============
+
+:mod:`codejam` Package
+----------------------
+
+.. automodule:: codejam
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`codejam` Module
+---------------------
+
+.. automodule:: codejam.codejam
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`helpers` Module
+---------------------
+
+.. automodule:: codejam.helpers
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`parsers` Module
+---------------------
+
+.. automodule:: codejam.parsers
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
