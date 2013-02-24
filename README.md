@@ -5,7 +5,7 @@ A [Google Code Jam](http://code.google.com/codejam) problem runner for python.
 
 _Can I used this in the contests?_ Yes, as long as this library is open source (it is) and is openly available online (it is), it can be used without submission on each problem. Just make a comment in your code to that effect. See the [Code Jam FAQ](http://code.google.com/codejam/faq.html#tools)
 
-[Documentation!](http://yanatan16.github.com/pycodejam/docs/index.html)
+[Documentation!](http://yanatan16.github.com/pycodejam/docs/html/index.html)
 
 ## License
 
