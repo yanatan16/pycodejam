@@ -12,13 +12,12 @@ def iter_parser(fn):
   @wraps(fn)
   def iter_parser_wrap(file):
     lines = file.__iter__()
-    next = lambda: lines.__next__().strip()
+    nxt = lambda: next(lines).strip()
 
-    n = int(next()) # Number of cases
+    n = int(nxt()) # Number of cases
     for i in range(n):
       try:
-        nxt = fn(next)
-        yield nxt
+        yield fn(nxt)
       except StopIteration:
         raise Exception("File stopped before expected!")
   return iter_parser_wrap
@@ -40,7 +39,7 @@ def simple_parser(parse):
     per = int(round(tot / n))
 
     li = lines.__iter__()
-    nxt = lambda: li.__next__().strip()
+    nxt = lambda: next(li).strip()
     grouped_lines = ([nxt() for i in range(per)] for j in range(n))
 
     for group in grouped_lines:

@@ -1,5 +1,5 @@
-from codejam.codejam import CodeJam
-from codejam.helpers import memoize
-from codejam import parsers
+from .codejam import CodeJam
+from .helpers import memoize
+from . import parsers
 
 __all__ = ["CodeJam", "parsers", "memoize"]

@@ -23,17 +23,11 @@ cd pycodejam
 python setup.py test && python setup.py install
 ```
 
-Note that pycodejam is a python 3.2-compatible library and is incompatible with python 2.x. You can use a virtualenv if you have python3 on your system:
-```
-virtualenv -p python3.2 venv
-source venv/bin/activate
-pip install pycodejam
-
-# Later, you can call
-deactivate # to go back to regular system-wide python
-```
+`pycodejam` is now compatible with python 2.6+ and 3.x!
 
 ## Examples
+
+There are also some examples in the [examples folder](http://github.com/yanatan16/tree/master/examples).
 
 A simple example
 

@@ -3,9 +3,16 @@ import sys
 sys.path = ['../../'] + sys.path # Prepend
 
 from codejam import CodeJam, parsers, memoize
-from io import StringIO
 import unittest
 from itertools import repeat
+
+# Python 3 difference
+try:
+  import io
+  io.StringIO('not unicode')
+  StringIO = io.StringIO
+except:
+  from StringIO import StringIO
 
 def pickleable_solve(line):
   assert line == "1 2 3", 'Input to solve() not as expected: "%s"' % line
