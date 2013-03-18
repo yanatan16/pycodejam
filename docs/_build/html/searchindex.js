@@ -1,0 +1,1 @@
+Search.setIndex({objects:{},terms:{document:0,welcom:0,helper:0,modul:0,parser:0,pycodejam:0,depth:0,api:0,file:0,input:0,main:0,"class":0,codejam:0,introduct:0},objtypes:{},titles:["Welcome to pycodejam&#8217;s documentation!"],objnames:{},filenames:["index"]})

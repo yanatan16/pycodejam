@@ -3,7 +3,7 @@ import sys
 
 setup(
     name = "pycodejam",
-    version = "1.0.2",
+    version = "1.1.0",
     packages = find_packages('src', exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     package_dir = { '': 'src' },
     test_suite = 'codejam.tests',
