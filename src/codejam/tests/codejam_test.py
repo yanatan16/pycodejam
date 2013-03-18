@@ -2,7 +2,8 @@
 import sys
 sys.path = ['../../'] + sys.path # Prepend
 
-from codejam import CodeJam, parsers, memoize
+from codejam import CodeJam, parsers
+from codejam.helpers import memoize
 import unittest
 from itertools import repeat
 

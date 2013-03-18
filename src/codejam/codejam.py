@@ -1,10 +1,12 @@
 from __future__ import print_function
 '''
-Code Jam Problem Runner
+  Code Jam Problem Runner Utility
 
-Author: Jon Eisen
-Dec 2012
+  Author: Jon Eisen
+  Dec 2012
+
 '''
+
 import sys
 import argparse
 from os import path
@@ -16,11 +18,12 @@ def parmap(f, args, workers):
   return [r.get() for r in results]
 
 class CodeJam:
-  '''A class that provides ways to easily run a code jam problem
+
+  '''
+  A class that provides ways to easily run a code jam problem
 
   The class requires two parameters to instantiate:
-  parser - A generator function of one parameter (file_obj) that yields each case in a tuple
-    There are predominant parsers and helpful decorators in the parsers module
+  parser - A generator function of one parameter (file_obj) that yields each case in a tuple. There are predominant parsers and helpful decorators in the parsers module
   solver - A solver that takes the case tuple expanded and returns a str()-able object to print as the answer
 
   The usual way to use this class is to call the main() function which will interpret command line arguments
@@ -28,7 +31,7 @@ class CodeJam:
 
   name - Something to add to the help statement
   floating_accuracy - digits of precision for floating point numbers
-  include_case - Include the "Case #%%d: " %% case_num for each case
+  include_case - Include the "Case #n: " for each case
   '''
 
   def __init__(self, parser, solver, name="Generic CodeJam Problem", floating_accuracy=6, include_case=True):
@@ -39,7 +42,6 @@ class CodeJam:
     self.include_case = include_case
 
   def outans(self, ans):
-    '''Output an answer'''
     if type(ans) == float:
       return ('%%.%df' % self.facc) % ans
     else:
@@ -53,6 +55,9 @@ class CodeJam:
       return oans
 
   def run(self, inf, outf, debug=False, silent=False):
+    '''
+    Run the CodeJam runner with file objects inf and outf and options for debug and silent
+    '''
     debug = debug and (not silent)
 
     for i, case in enumerate(self.parse(inf)):
@@ -68,6 +73,9 @@ class CodeJam:
       print(output, file=outf)
 
   def run_multiproc(self, inf, outf, debug=False, silent=False, workers=4):
+    '''
+    Run the CodeJam runner utility as multiprocessing with a default of 4 workers
+    '''
     from multiprocessing import Pool
 
     debug = debug and (not silent)
@@ -91,7 +99,12 @@ class CodeJam:
 
       print(output, file=outf)
 
-  def main(self, argv=sys.argv[1:]):
+  def main(self, argv=None):
+    '''
+    Run the CodeJam runner utility from the command line
+    '''
+    if not argv:
+      argv = sys.argv[1:]
     parser = argparse.ArgumentParser(description='Run a %s.' % self.name)
     parser.add_argument('input', metavar='FILE', type=str, 
       help='input file (A-small-practice.in for example)')
