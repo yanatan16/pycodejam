@@ -15,11 +15,9 @@ pip install pycodejam
 
 Or you can install from source:
 
-```
-git clone https://github.com/yanatan16/pycodejam
-cd pycodejam
-python setup.py test && python setup.py install
-```
+    git clone https://github.com/yanatan16/pycodejam
+    cd pycodejam
+    python setup.py test && python setup.py install
 
 `pycodejam` is now compatible with python 2.6+ and 3.x!
 
@@ -29,31 +27,26 @@ There are also some examples in the [examples folder](http://github.com/yanatan1
 
 ## A simple example
 
-```python
-def solve(line1, line2):
-  return sum(line1) - sum(line2) # This is where you put your solution
+    def solve(line1, line2):
+      return sum(line1) - sum(line2) # This is where you put your solution
 
-if __name__ == "__main__":
-  from codejam import CodeJam, parsers
-  CodeJam(parser.ints, solve).main()
-```
+    if __name__ == "__main__":
+      from codejam import CodeJam, parsers
+      CodeJam(parser.ints, solve).main()
 
 ## A complex example
 
-```python
-def solve(*lines):
-  return sum((sum(line) for line in lines)) # This is where you put your solution
-
-@iter_parser
-def parse(nxtline):
-  n = int(nxtline())
-  return [nxtline() for unused in range(n)]
-
-if __name__ == "__main__":
-  from codejam import CodeJam
-  CodeJam(parse, solve).main()
-```
-
+    def solve(*lines):
+      return sum((sum(line) for line in lines)) # This is where you put your solution
+    
+    @iter_parser
+    def parse(nxtline):
+      n = int(nxtline())
+      return [nxtline() for unused in range(n)]
+    
+    if __name__ == "__main__":
+      from codejam import CodeJam
+      CodeJam(parse, solve).main()
 
 # In Depth
 
@@ -85,34 +78,28 @@ A parser is a function of a single file object that returns a generator of case 
 instances will be fed into the solve function as expanded lists/tuples.
 
 e.g.
-```python
-for case in parse(file):
-  print(solve(*case))
-```
+    for case in parse(file):
+      print(solve(*case))
 
 The parsers module provides a decorator called `simple_parser`. Simple parsers assume each case has a equal number of lines. For problems that do not fit this description, implement your own parser. The simple parser decorator then figures out how many lines per case, and passes those lines into the parser (expanded). The module also provides a few convenience parsers that are decorated as simple_parsers: `ints`, `words` and `lines`. `ints` will pass a list of lines, each of which is a list of integers parsed from the input.
 
 A custom parser will generally follow this outline:
 
-```python
-def my_custom_parser(file):
-  lines = file.__iter__()
-  next = lambda: lines.__next__()
-
-  n = int(next().strip()) # Number of cases
-  for i in range(n):
-    m = int(next().strip()) # Number of lines for this case
-    yield [next() for unused in range(m)]
-```
+    def my_custom_parser(file):
+      lines = file.__iter__()
+      next = lambda: lines.__next__()
+    
+      n = int(next().strip()) # Number of cases
+      for i in range(n):
+        m = int(next().strip()) # Number of lines for this case
+        yield [next() for unused in range(m)]
 
 And thats why I created the `iter_parser` which will take care of the first four lines of the above pattern and simply call your parser on each iteration of the loop:
 
-```python
-@iter_parser
-def parse(next):
-  m = int(next().strip()) # Number of lines for this case
-  return [next() for unused in range(m)] # Return here, don't yield
-```
+    @iter_parser
+    def parse(next):
+      m = int(next().strip()) # Number of lines for this case
+      return [next() for unused in range(m)] # Return here, don't yield
 
 ## helpers
 
@@ -120,11 +107,9 @@ The helpers module provides the `memoize` decorator, which memoizes a function w
 
 Example:
 
-```python
-@memoize
-def myfunc(a,b,c):
-  return a * b * c
-```
+    @memoize
+    def myfunc(a,b,c):
+      return a * b * c
 
 # License
 
