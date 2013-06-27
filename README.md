@@ -7,10 +7,6 @@ _Can I used this in the contests?_ Yes, as long as this library is open source (
 
 [Documentation!](http://yanatan16.github.com/pycodejam/docs/html/index.html)
 
-## License
-
-pycodejam is licensed with the MIT license found in the LICENSE file.
-
 ## Installation
 
 ```
@@ -27,11 +23,11 @@ python setup.py test && python setup.py install
 
 `pycodejam` is now compatible with python 2.6+ and 3.x!
 
-## Examples
+# Examples
 
 There are also some examples in the [examples folder](http://github.com/yanatan16/tree/master/examples).
 
-A simple example
+## A simple example
 
 ```python
 def solve(line1, line2):
@@ -42,7 +38,7 @@ if __name__ == "__main__":
   CodeJam(parser.ints, solve).main()
 ```
 
-A complex example
+## A complex example
 
 ```python
 def solve(*lines):
@@ -58,29 +54,10 @@ if __name__ == "__main__":
   CodeJam(parse, solve).main()
 ```
 
-The command line `-h` option:
 
-```
-usage: problem_solver.py [-h] [-o FILE] [-d] [-q] [-m] [-w N] FILE
+# In Depth
 
-Run a Generic CodeJam Problem.
-
-positional arguments:
-  FILE                  input file (A-small-practice.in for example)
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -o FILE, --output FILE
-                        output file (defaults to input_file.out)
-  -d, --debug           Add some debug output
-  -q, --quiet           Quiet all output to stdout
-  -m, --multiproc       Enable multiprocessing
-  -w N, --workers N     Number of workers to use if multiprocessing
-```
-
-## In Depth
-
-### `CodeJam`
+## `CodeJam`
 
 `CodeJam` is a class that provides ways to easily run a code jam problem.
 
@@ -102,7 +79,7 @@ _Note_: You must define functions at the top level of a module in order to be ab
 
 Code Jam problems that involve floating point numbers often require 6 decimal points of accuracy. So any float number returned from a solver will be printed like so: `'%.6f' % ans`. If a problem requires a different level of accuracy, pass the optional `floating_accuracy` parameter into the `CodeJam` constructor, which defaults to 6 for 6 digits of accuracy.
 
-### parsers
+## parsers
 
 A parser is a function of a single file object that returns a generator of case instances. Those case
 instances will be fed into the solve function as expanded lists/tuples.
@@ -137,7 +114,7 @@ def parse(next):
   return [next() for unused in range(m)] # Return here, don't yield
 ```
 
-### helpers
+## helpers
 
 The helpers module provides the `memoize` decorator, which memoizes a function with no keyword arguments using a dict object.
 
@@ -148,3 +125,7 @@ Example:
 def myfunc(a,b,c):
   return a * b * c
 ```
+
+# License
+
+pycodejam is licensed with the MIT license found in the LICENSE file.
