@@ -84,6 +84,8 @@ e.g.
 
 The parsers module provides a decorator called `simple_parser`. Simple parsers assume each case has a equal number of lines. For problems that do not fit this description, implement your own parser. The simple parser decorator then figures out how many lines per case, and passes those lines into the parser (expanded). The module also provides a few convenience parsers that are decorated as simple_parsers: `ints`, `words` and `lines`. `ints` will pass a list of lines, each of which is a list of integers parsed from the input.
 
+## Custom parsers
+
 A custom parser will generally follow this outline:
 
     def my_custom_parser(file):
