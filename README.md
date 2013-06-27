@@ -1,3 +1,8 @@
+<!-- revealjs
+title: pycodejam
+theme: beige
+-->
+
 pycodejam
 =========
 
