@@ -55,6 +55,7 @@ There are also some examples in the [examples folder](http://github.com/yanatan1
 `CodeJam` is a class that provides ways to easily run a code jam problem.
 
 The class requires two parameters to instantiate:
+
 - parser - A generator function of one parameter (file_obj) that yields each case in a tuple.
   There are useful parsers and helpful decorators in the `codejam.parsers` module
 - solver - A solver that takes the parsed case list/tuple expanded and returns a `str()`-able object to print as the answer
@@ -62,13 +63,13 @@ The class requires two parameters to instantiate:
 The usual way to use this class is to call the main() function which will interpret command line arguments
 for the input file and options for debugging (-d).
 
-#### Multiprocessing
+## Multiprocessing
 
 Multiprocessing is an easy way to parallelize the solving (assuming each solution is independent!). Simply pass the -m option to the command line when executing the script and multiprocessing will take care of the rest. Make sure to debug your solvers first though! Because debugging while multiprocessing is difficult.
 
 _Note_: You must define functions at the top level of a module in order to be able to pickle them to multiprocessing workers. When in doubt, don't use multiprocessing.
 
-#### Floating Point Numbers
+## Floating Point Numbers
 
 Code Jam problems that involve floating point numbers often require 6 decimal points of accuracy. So any float number returned from a solver will be printed like so: `'%.6f' % ans`. If a problem requires a different level of accuracy, pass the optional `floating_accuracy` parameter into the `CodeJam` constructor, which defaults to 6 for 6 digits of accuracy.
 
