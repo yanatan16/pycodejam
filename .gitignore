@@ -41,3 +41,5 @@ nosetests.xml
 
 __pycache__
 venv
+
+build-docs

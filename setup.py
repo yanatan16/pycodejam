@@ -3,7 +3,7 @@ import sys
 
 setup(
     name = "pycodejam",
-    version = "1.1.0",
+    version = "1.2.0",
     packages = find_packages('src', exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     package_dir = { '': 'src' },
     test_suite = 'codejam.tests',
@@ -15,4 +15,5 @@ setup(
     url = "http://github.com/yanatan16/pycodejam",
     license = "MIT",
     keywords = "google code jam codejam competition problem",
+    zip_safe = True
 )
