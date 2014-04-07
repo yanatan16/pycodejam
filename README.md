@@ -10,7 +10,7 @@ A [Google Code Jam](http://code.google.com/codejam) problem runner for python.
 
 _Can I used this in the contests?_ Yes, as long as this library is open source (it is) and is openly available online (it is), it can be used without submission on each problem. Just make a comment in your code to that effect. See the [Code Jam FAQ](http://code.google.com/codejam/faq.html#tools)
 
-[Documentation!](http://yanatan16.github.com/pycodejam/docs/html/index.html)
+[Documentation!](http://pycodejam.readthedocs.org/en/latest/)
 
 ## Installation
 
@@ -28,7 +28,7 @@ Or you can install from source:
 
 # Examples
 
-There are also some examples in the [examples folder](http://github.com/yanatan16/tree/master/examples).
+There are also some examples in the [examples folder](http://github.com/yanatan16/pycodejam/tree/master/examples).
 
 ## A simple example
 
@@ -43,12 +43,12 @@ There are also some examples in the [examples folder](http://github.com/yanatan1
 
     def solve(*lines):
       return sum((sum(line) for line in lines)) # This is where you put your solution
-    
-    @iter_parser
+
+    @parsers.iter_parser
     def parse(nxtline):
       n = int(nxtline())
       return [nxtline() for unused in range(n)]
-    
+
     if __name__ == "__main__":
       from codejam import CodeJam
       CodeJam(parse, solve).main()
@@ -96,7 +96,7 @@ A custom parser will generally follow this outline:
     def my_custom_parser(file):
       lines = file.__iter__()
       next = lambda: lines.__next__()
-    
+
       n = int(next().strip()) # Number of cases
       for i in range(n):
         m = int(next().strip()) # Number of lines for this case

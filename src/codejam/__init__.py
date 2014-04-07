@@ -3,7 +3,7 @@ This is PyCodeJam, a CodeJam runner in python!
 
 Essentially, this package will save you time vital to CodeJam problems.
 
-*Can I used this in the contests?* Yes, as long as this library is open source (it is) and is openly available online (it is), it can be used without submission on each problem. Just make a comment in your code to that effect. See the Code Jam FAQ_
+*Can I used this in the contests?*  Yes, as long as this library is open source (it is) and is openly available online (it is), it can be used without submission on each problem. Just make a comment in your code to that effect. See the Code Jam FAQ_
 
 License: pycodejam is licensed with the MIT license found in the LICENSE file.
 
@@ -27,7 +27,7 @@ Or you can install from source::
 Examples
 --------
 
-There are also some examples in the [examples folder](http://github.com/yanatan16/tree/master/examples).
+There are also some examples in the [examples folder](http://github.com/yanatan16/pycodejam/tree/master/examples).
 
 A simple example::
 
@@ -43,8 +43,7 @@ A complex example::
     def solve(*lines):
       return sum((sum(line) for line in lines)) # This is where you put your solution
 
-    @iter_parser
-
+    @parsers.iter_parser
     def parse(nxtline):
       n = int(nxtline())
       return [int(nxtline()) for unused in range(n)]
